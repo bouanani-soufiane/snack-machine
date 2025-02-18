@@ -20,9 +20,11 @@ public class Money {
     }
 
     public Money add(Money other) {
-     return null;
+        if (other == null) {
+            throw new IllegalArgumentException("Cannot add null money");
+        }
+        return new Money(this.amount.add(other.amount));
     }
-
     public Money subtract(Money other) {
         return null;
     }
