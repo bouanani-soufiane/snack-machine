@@ -13,30 +13,29 @@ public class Money {
     public static final Money TEN_DINAR = new Money(BigDecimal.valueOf(10));
 
     public Money(BigDecimal amount) {
-        if (amount == null || amount.compareTo(BigDecimal.ZERO) < 0) {
-            throw new IllegalArgumentException("Money amount must be non-negative");
-        }
+        validateAmount(amount);
         this.amount = amount.stripTrailingZeros();
     }
 
-    public Money add(Money other) {
-        if (other == null) {
+    public Money add(Money money) {
+        if (money == null) {
             throw new IllegalArgumentException("Cannot add null money");
         }
-        return new Money(this.amount.add(other.amount));
+        validateAmount(money.amount);
+        return new Money(this.amount.add(money.amount));
     }
 
-    public Money subtract(Money other) {
-        if (other == null) {
+    public Money subtract(Money money) {
+        if (money == null) {
             throw new IllegalArgumentException("Cannot subtract null money");
         }
-        BigDecimal result = this.amount.subtract(other.amount);
+        BigDecimal result = this.amount.subtract(money.amount);
+
         if (result.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("Resulting money cannot be negative");
         }
         return new Money(result);
     }
-
 
     public boolean isLessThan(Money other) {
         if (other == null) {
@@ -59,12 +58,20 @@ public class Money {
 
     @Override
     public int hashCode() {
-        return amount.hashCode();
+        return amount.stripTrailingZeros().hashCode();
     }
-
 
     @Override
     public String toString() {
-        return "Money{" + "amount=" + amount + '}';
+        return "Money{" + "amount = " + amount + '}';
+    }
+
+    private void validateAmount(BigDecimal amount) {
+        if (amount == null)
+            throw new IllegalArgumentException("Amount cannot be null");
+
+        if (amount.compareTo(BigDecimal.ZERO) < 0)
+            throw new IllegalArgumentException("Negative amount not accepted");
+
     }
 }

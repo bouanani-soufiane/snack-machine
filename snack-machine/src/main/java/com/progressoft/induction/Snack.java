@@ -1,10 +1,10 @@
 package com.progressoft.induction;
 
 public class Snack {
-    private int quantity;
+    private long quantity;
     private final Money price;
 
-    public Snack(int quantity, Money price) {
+    public Snack(long quantity, Money price) {
         if (quantity < 0) {
             throw new IllegalArgumentException("Quantity cannot be negative");
         }
@@ -15,7 +15,7 @@ public class Snack {
         this.price = price;
     }
 
-    public int quantity() {
+    public long quantity() {
         return quantity;
     }
 

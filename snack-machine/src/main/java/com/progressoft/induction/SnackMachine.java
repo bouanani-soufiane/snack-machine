@@ -1,7 +1,7 @@
 package com.progressoft.induction;
 
 public class SnackMachine {
-    static final int DEFAULT_QUANTITY = 10;
+    static final Long DEFAULT_QUANTITY = 10L;
 
     private Money moneyInside;
     private Money moneyInTransaction;
