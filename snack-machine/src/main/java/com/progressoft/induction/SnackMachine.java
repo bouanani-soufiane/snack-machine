@@ -52,6 +52,31 @@ public class SnackMachine {
         return chocolates;
     }
 
-    public void buySnack ( SnackType snackType ) {
+    public Money buySnack(SnackType snackType) {
+        Snack snack;
+        switch (snackType) {
+            case CHEWING_GUM:
+                snack = chewingGums;
+                break;
+            case CHIPS:
+                snack = chips;
+                break;
+            case CHOCOLATE:
+                snack = chocolates;
+                break;
+            default:
+                throw new IllegalArgumentException("Snack not found");
+        }
+        if (snack.quantity() <= 0) {
+            throw new IllegalStateException("Snack is not available");
+        }
+        if (moneyInTransaction().isLessThan(snack.price())) {
+            throw new IllegalStateException("Insufficient money inserted");
+        }
+        snack.dispense();
+        Money change = moneyInTransaction.subtract(snack.price());
+        moneyInside = moneyInside.add(snack.price());
+        moneyInTransaction = Money.ZERO;
+        return change;
     }
 }

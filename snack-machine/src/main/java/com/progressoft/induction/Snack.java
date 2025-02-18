@@ -19,4 +19,14 @@ public class Snack {
         return quantity;
     }
 
+    public Money price() {
+        return price;
+    }
+
+    public void dispense() {
+        if (quantity <= 0) {
+            throw new IllegalStateException("Snack is not available");
+        }
+        quantity--;
+    }
 }

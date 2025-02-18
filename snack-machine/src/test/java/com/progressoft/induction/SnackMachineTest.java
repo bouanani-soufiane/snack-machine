@@ -108,19 +108,19 @@ public class SnackMachineTest {
 
         snackMachine.buySnack(SnackType.CHOCOLATE);
 
-//        assertThat(snackMachine.chewingGums().quantity()).isEqualTo(DEFAULT_QUANTITY - 1);
-//        assertThat(snackMachine.chips().quantity()).isEqualTo(DEFAULT_QUANTITY - 1);
-//        assertThat(snackMachine.chocolates().quantity()).isEqualTo(DEFAULT_QUANTITY - 1);
+        assertThat(snackMachine.chewingGums().quantity()).isEqualTo(DEFAULT_QUANTITY - 1);
+        assertThat(snackMachine.chips().quantity()).isEqualTo(DEFAULT_QUANTITY - 1);
+        assertThat(snackMachine.chocolates().quantity()).isEqualTo(DEFAULT_QUANTITY - 1);
     }
 
     @Test
     void buying_unavailable_quantity_of_a_snack_should_fail() {
-//        while (snackMachine.chewingGums().quantity() > 0) {
-//            snackMachine.insertMoney(Money.QUARTER_DINAR);
-//            snackMachine.insertMoney(Money.QUARTER_DINAR);
-//
-//            snackMachine.buySnack(SnackType.CHEWING_GUM);
-//        }
+        while (snackMachine.chewingGums().quantity() > 0) {
+            snackMachine.insertMoney(Money.QUARTER_DINAR);
+            snackMachine.insertMoney(Money.QUARTER_DINAR);
+
+            snackMachine.buySnack(SnackType.CHEWING_GUM);
+        }
 
         assertThatThrownBy(new ThrowableAssert.ThrowingCallable() {
             @Override
@@ -149,17 +149,17 @@ public class SnackMachineTest {
     void buying_a_snack_after_inserting_money_more_than_snack_price_should_return_change() {
         snackMachine.insertMoney(Money.DINAR);
 
-//        Money change = snackMachine.buySnack(SnackType.CHEWING_GUM);
+        Money change = snackMachine.buySnack(SnackType.CHEWING_GUM);
 
-//        assertThat(change).isEqualTo(Money.HALF_DINAR);
+        assertThat(change).isEqualTo(Money.HALF_DINAR);
     }
 
     @Test
     void buying_a_snack_after_inserting_money_equal_to_snack_price_should_return_zero_change() {
         snackMachine.insertMoney(Money.HALF_DINAR);
 
-//        Money change = snackMachine.buySnack(SnackType.CHEWING_GUM);
+        Money change = snackMachine.buySnack(SnackType.CHEWING_GUM);
 
-//        assertThat(change).isEqualTo(Money.ZERO);
+        assertThat(change).isEqualTo(Money.ZERO);
     }
 }

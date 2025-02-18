@@ -14,4 +14,5 @@ public enum SnackType {
     public Money price() {
         return price;
     }
+
 }
