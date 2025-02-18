@@ -25,9 +25,18 @@ public class Money {
         }
         return new Money(this.amount.add(other.amount));
     }
+
     public Money subtract(Money other) {
-        return null;
+        if (other == null) {
+            throw new IllegalArgumentException("Cannot subtract null money");
+        }
+        BigDecimal result = this.amount.subtract(other.amount);
+        if (result.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException("Resulting money cannot be negative");
+        }
+        return new Money(result);
     }
+
 
     public boolean isLessThan(Money other) {
         return false;
