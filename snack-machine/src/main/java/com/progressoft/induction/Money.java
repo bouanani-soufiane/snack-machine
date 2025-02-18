@@ -16,7 +16,7 @@ public class Money {
         if (amount == null || amount.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("Money amount must be non-negative");
         }
-        this.amount = amount;
+        this.amount = amount.stripTrailingZeros();
     }
 
     public Money add(Money other) {
@@ -54,7 +54,7 @@ public class Money {
             return false;
         }
         Money otherMoney = (Money) obj;
-        return amount.equals(otherMoney.amount);
+        return this.amount.compareTo(otherMoney.amount) == 0;
     }
 
     @Override
