@@ -3,8 +3,14 @@ package com.progressoft.induction;
 public class SnackMachine {
     static final Object DEFAULT_QUANTITY = 10;
 
-    public boolean moneyInside () {
-        return false;
+    private Money moneyInside;
+
+    public SnackMachine() {
+        this.moneyInside = Money.ZERO;
+    }
+
+    public Money moneyInside () {
+        return moneyInside;
     }
 
     public void insertMoney ( Object quarterDinar ) {
