@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.math.BigDecimal;
 
+import static com.progressoft.induction.SnackMachine.DEFAULT_QUANTITY;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -64,9 +65,9 @@ public class SnackMachineTest {
 
     @Test
     void new_snack_machine_should_have_three_types_of_snacks() {
-//        assertThat(snackMachine.chewingGums().quantity()).isEqualTo(DEFAULT_QUANTITY);
-//        assertThat(snackMachine.chips().quantity()).isEqualTo(DEFAULT_QUANTITY);
-//        assertThat(snackMachine.chocolates().quantity()).isEqualTo(DEFAULT_QUANTITY);
+        assertThat(snackMachine.chewingGums().quantity()).isEqualTo(DEFAULT_QUANTITY);
+        assertThat(snackMachine.chips().quantity()).isEqualTo(DEFAULT_QUANTITY);
+        assertThat(snackMachine.chocolates().quantity()).isEqualTo(DEFAULT_QUANTITY);
     }
 
     @Test

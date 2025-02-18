@@ -1,15 +1,21 @@
 package com.progressoft.induction;
 
 public class SnackMachine {
-    static final Object DEFAULT_QUANTITY = 10;
+    static final Integer DEFAULT_QUANTITY = 10;
 
     private Money moneyInside;
     private Money moneyInTransaction;
 
+    private Snack chewingGums;
+    private Snack chips;
+    private Snack chocolates;
 
     public SnackMachine() {
         this.moneyInside = Money.ZERO;
         this.moneyInTransaction = Money.ZERO;
+        this.chewingGums = new Snack(DEFAULT_QUANTITY, SnackType.CHEWING_GUM.price());
+        this.chips = new Snack(DEFAULT_QUANTITY, SnackType.CHIPS.price());
+        this.chocolates = new Snack(DEFAULT_QUANTITY, SnackType.CHOCOLATE.price());
 
     }
 
@@ -34,16 +40,16 @@ public class SnackMachine {
         return moneyInTransaction;
     }
 
-    public Object chewingGums () {
-        return null;
+    public Snack chewingGums() {
+        return chewingGums;
     }
 
-    public Object chips () {
-        return null;
+    public Snack chips() {
+        return chips;
     }
 
-    public Object chocolates () {
-        return null;
+    public Snack chocolates() {
+        return chocolates;
     }
 
     public void buySnack ( SnackType snackType ) {
