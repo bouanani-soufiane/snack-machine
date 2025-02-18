@@ -39,7 +39,10 @@ public class Money {
 
 
     public boolean isLessThan(Money other) {
-        return false;
+        if (other == null) {
+            return false;
+        }
+        return this.amount.compareTo(other.amount) < 0;
     }
 
     @Override
